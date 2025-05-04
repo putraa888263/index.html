@@ -1,0 +1,140 @@
+>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animasi Romantis</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 10;
+            color: white;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        p {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+        }
+
+        .heart {
+            position: absolute;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .btn {
+            background-color: #ff6b81;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            background-color: #ff4757;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .spotify-player {
+            margin-top: 30px; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Haii Feli</h1>
+        <p>Iya gua tauu yang lu suruh cari itu lucuu,</p>
+        <button class="btn" id="specialBtn">Lanjutt</button>
+
+        <!-- Tambahkan Pemutar Spotify di sini -->
+        <div class="spotify-player">
+           <!-- Gantilah tautan di src dengan tautan lagu Anda -->
+           <iframe src="https://open.spotify.com/track/1X80KdFJpedU4as4WGIgYM?si=Fpn6mu6SQ2OoVs1KZhGVRw" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+        </div>
+    </div>
+
+    <script>
+        // Membuat hati yang jatuh
+        function createHearts() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '🖕';
+            heart.classList.add('heart');
+            
+            // Random posisi dan ukuran
+            const size = Math.random() * 30 + 10;
+            heart.style.fontSize = `${size}px`;
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.top = '-50px';
+            
+            // Random kecepatan jatuh
+            const duration = Math.random() * 3 + 2;
+            heart.style.animationDuration = `${duration}s`;
+            
+            document.body.appendChild(heart);
+            
+            // Hapus elemen setelah animasi selesai
+            setTimeout(() => {
+                heart.remove();
+            }, duration * 1000);
+        }
+
+        // Event listener untuk tombol
+        document.getElementById('specialBtn').addEventListener('click', function() {
+           // Ubah teks
+           const container = document.querySelector('.container');
+           container.innerHTML = `
+               <h1>TAPIIIII!!</h1>
+               <p>jangan gituu lahh gua juga bisa cemburuu kan, iyaa tau emang lucuuu tapi kenapaaa harus suruh gua carii???</p>
+               <p>yaudaah maaf kalo gua gabisa romantis kaya gituuu
+               ngirim laguuu dan segala macem, tapi gua sayaang koo!</p>
+           `;
+           // Tambahkan kembali pemutar Spotify setelah mengubah teks
+           container.innerHTML += `
+               <div class="spotify-player">
+                   <iframe src="https://open.spotify.com/track/1X80KdFJpedU4as4WGIgYM?si=Fpn6mu6SQ2OoVs1KZhGVRw" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+               </div>`;
+       });
+
+       // Buat hati setiap 300ms
+       setInterval(createHearts, 300);
+    </script>
+</body>
+</html>
